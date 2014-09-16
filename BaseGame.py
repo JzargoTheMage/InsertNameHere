@@ -19,7 +19,6 @@ OriginalSpeed = 0
 TempAttack = 0
 TempDefense = 0
 TempSpeed = 0
-enemyType = 0
 playerType = 0
 battleStatus = "None"
 enemyName = "None"
@@ -30,6 +29,7 @@ Treasure = 0
 ShopMenu = 0
 Adventure = 0
 playAgain = 1
+battle = False
 
 #Defined actions are below
 
@@ -38,44 +38,45 @@ playAgain = 1
 def Battle():
     global battleAction
     SaveStats()
-    print "Enemy Name: ", enemyName
-    print "Enemy Health: ", enemyHealth
-    print "Your Health: ", Health
-    while battleAction == 0:
-        battleAction = int(raw_input("Enter 1 to attack, 2 to defend, or 3 to attack with poison.  "))
-    while battleAction == 1:
-        if Speed > enemySpeed:
-            Attacking()
+    while battle == True:
+        print "Enemy Name: ", enemyName
+        print "Enemy Health: ", enemyHealth
+        print "Your Health: ", Health
+        while battleAction == 0:
+            battleAction = int(raw_input("Enter 1 to attack, 2 to defend, or 3 to attack with poison.  "))
+        while battleAction == 1:
+            if Speed > enemySpeed:
+                Attacking()
+                if battleStatus == "None":
+                    EnemyAttacking()
+                PoisonCheck()
+                battleAction = 0
+            if enemySpeed > Speed:
+                if battleStatus == "None":
+                    EnemyAttacking()
+                Attacking()
+                PoisonCheck()
+                battleAction = 0
+        while battleAction == 2:
+            Defending()
             if battleStatus == "None":
                 EnemyAttacking()
+            ReturnDefense()
             PoisonCheck()
             battleAction = 0
-        if enemySpeed > Speed:
-            if battleStatus == "None":
-                EnemyAttacking()
-            Attacking()
-            PoisonCheck()
-            battleAction = 0
-    while battleAction == 2:
-        Defending()
-        if battleStatus == "None":
-            EnemyAttacking()
-        ReturnDefense()
-        PoisonCheck()
-        battleAction = 0
-    while battleAction == 3:
-        if Speed > enemySpeed:
-            PoisonAttacking()
-            if battleStatus == "None":
-                EnemyAttacking()
-            PoisonCheck()
-            battleAction = 0
-        if enemySpeed > Speed:
-            if battleStatus == "None":
-                EnemyAttacking()
-            PoisonAttacking()
-            PoisonCheck()
-            battleAction = 0
+        while battleAction == 3:
+            if Speed > enemySpeed:
+                PoisonAttacking()
+                if battleStatus == "None":
+                    EnemyAttacking()
+                PoisonCheck()
+                battleAction = 0
+            if enemySpeed > Speed:
+                if battleStatus == "None":
+                    EnemyAttacking()
+                PoisonAttacking()
+                PoisonCheck()
+                battleAction = 0
 
 #Save prebattle stats and restore them later.
 
@@ -268,28 +269,28 @@ def OP():
 #This is the generic nameless enemy template
 #Base other enemies off of this template
     
-def EasyFiller():
+def Bandit():
     global enemyName
     global enemyHealth
     global enemyAttack
     global enemyDefense
     global enemySpeed
     global Treasure
-    enemyName = "EasyFiller"
+    enemyName = "Bandit"
     enemyHealth = 5
     enemyAttack = 5
     enemyDefense = 5
     enemySpeed = 5
-    Treasure = 10
+    Treasure = 15
 
-def MediumFiller():
+def BanditLeader():
     global enemyName
     global enemyHealth
     global enemyAttack
     global enemyDefense
     global enemySpeed
     global Treasure
-    enemyName = "MediumFiller"
+    enemyName = "Bandit Leader"
     enemyHealth = 10
     enemyAttack = 10
     enemyDefense = 10
@@ -305,14 +306,15 @@ def Victory():
     global poison
     global enemyPoison
     global Adventure
+    global Area
     global Coins
     global Treasure
-    ReturnStats()
     print playerName, "was victorious against", enemyName, "!"
     print playername, "was awarded", Treasure, "coins!"
     Adventure += 1
     Coins += Treasure
     Treasure = 0
+    Area = 0
     battle = False
     playerType = 0
     enemyType = 0
@@ -328,8 +330,9 @@ def Defeat():
     global poison
     global enemyPoison
     global Treasure
-    ReturnStats()
+    global Area
     print playername, "was defeated by", enemyName, "!"
+    Area = 0
     Treasure = 0
     battle = False
     playerType = 0
@@ -338,8 +341,6 @@ def Defeat():
     enemyPoison = False
 
 #Beginning of main program here
-#Dividers
-#Dividers
 
 while playAgain == 1:
     print "Welcome!"
@@ -416,12 +417,26 @@ while playAgain == 1:
             ShopMenu = 0
     while Area == 2:
         while Adventure == 0:
-            enemyType = 1
+            print "You hear a desparate call for help, almost drowned out by screams."
+            print "Approaching the source of the noise, you find a ransacked caravan with one lone survivor."
+            print "The man is badly injured, with a massive gouge across his chest and an arrow stuck in his shoulder."
+            print "He is fading in and out of consciousness, muttering to himself.
+            print "'Bandits... ambush... g-gem..... taken.....'"
+            print "Suddenly, an arrow whizzes past your head, barely missing you."
+            Bandit()
             battle = True
             Battle()
-            Area = 0
+            if battleStatus == "Victory":
+                print "After a thorough search of the bandit, you are unable to find the gem the dying man spoke of."
+                print "Disappointed, you return to town and rest up."
+                ReutrnStats()
+                battleStatus = "None"
+            if battleStatus == "Defeat":
+                print "You flee from battle and return to town to rest up."
+                ReturnStats()
+                battleStatus = "None"
         while Adventure == 1:
-            enemyType = 2
+            print ""
+            Bandit()
             battle = True
             Battle()
-            Area = 0
