@@ -11,4 +11,4 @@ Only use or modify JamEngine with written permission.
 
 --------
 
-Insert story here
+You are a wandering warrior
