@@ -1,6 +1,11 @@
-InsertGameNameHere
+Insert Name Here
 ==================
 
-A game made from JamEngine version 1.1
+Made from JamEngine 1.1
+DO NOT REPRODUCE OR MODIFY
+JamEngine is owned by me.
+Only use or modify JamEngine with written permission.
 
-Updates made here to the engine are also pushed to the main engine file
+--------
+
+Insert story here
