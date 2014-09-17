@@ -305,13 +305,11 @@ def Victory():
     global enemyType
     global poison
     global enemyPoison
-    global Adventure
     global Area
     global Coins
     global Treasure
     print playerName, "was victorious against", enemyName, "!"
     print playername, "was awarded", Treasure, "coins!"
-    Adventure += 1
     Coins += Treasure
     Treasure = 0
     Area = 0
@@ -431,10 +429,13 @@ while playAgain == 1:
                 print "Disappointed, you return to town and rest up."
                 ReutrnStats()
                 battleStatus = "None"
+                Adventure += 1
+                Area = 0
             if battleStatus == "Defeat":
                 print "You flee from battle and return to town to rest up."
                 ReturnStats()
                 battleStatus = "None"
+                Area = 0
         while Adventure == 1:
             print ""
             Bandit()
