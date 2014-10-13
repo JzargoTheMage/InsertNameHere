@@ -297,6 +297,19 @@ def BanditLeader():
     enemySpeed = 10
     Treasure = 15
 
+def MagmaWolf():
+    global enemyName
+    global enemyHealth
+    global enemyAttack
+    global enemyDefense
+    global enemySpeed
+    global Treasure
+    enemyName = "Magma Wolf"
+    enemyHealth = 30
+    enemyAttack = 25
+    enemySpeed = 40
+    Treasure = 50
+
 #This states the actions to follow for a successful battle (conditions in battle def.)
     
 def Victory():
