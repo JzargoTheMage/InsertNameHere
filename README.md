@@ -15,6 +15,6 @@ You are a wandering warrior in search of riches and glory. Nothing matters to yo
 
 You can't stop.
 
-You can't sleep.
+You can't rest.
 
 And you can't escape the madness.
