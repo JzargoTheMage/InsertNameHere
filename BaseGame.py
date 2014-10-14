@@ -266,8 +266,7 @@ def OP():
     Defense = 50
     Speed = 50
 
-#This is the generic nameless enemy template
-#Base other enemies off of this template
+#These are enemy stats. Pretty simple.
     
 def Bandit():
     global enemyName
@@ -296,6 +295,49 @@ def BanditLeader():
     enemyDefense = 10
     enemySpeed = 10
     Treasure = 15
+
+def WaterSprite():
+    global enemyName
+    global enemyHealth
+    global enemyAttack
+    global enemyDefense
+    global enemySpeed
+    global Treasure
+    enemyName = "Water Sprite"
+    enemyHealth = 20
+    enemyAttack = 15
+    enemyDefense = 10
+    enemySpeed = 15
+    Treasure = 15
+
+def Sylph():
+    global enemyName
+    global enemyHealth
+    global enemyAttack
+    global enemyDefense
+    global enemySpeed
+    global Treasure
+    enemyName = "Sylph"
+    enemyHealth = 20
+    enemyAttack = 10
+    enemyDefense = 10
+    enemySpeed = 20
+    Treasure = 15
+    
+def Gnome():
+    global enemyName
+    global enemyHealth
+    global enemyAttack
+    global enemyDefense
+    global enemySpeed
+    global Treasure
+    enemyName = "Gnome"
+    enemyHealth = 20
+    enemyAttack = 15
+    enemyDefense = 15
+    enemySpeed = 10
+    Treasure = 15
+    
 
 def MagmaWolf():
     global enemyName
@@ -454,3 +496,5 @@ while playAgain == 1:
             Bandit()
             battle = True
             Battle()
+    while Area == 2:
+        #Make this a flashback or arena or something
