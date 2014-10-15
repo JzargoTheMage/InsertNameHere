@@ -30,6 +30,9 @@ ShopMenu = 0
 Adventure = 0
 playAgain = 1
 battle = False
+firstTime = True
+enemyNumber = 0
+poisonOwned = 0
 
 #Defined actions are below
 
@@ -65,6 +68,7 @@ def Battle():
             PoisonCheck()
             battleAction = 0
         while battleAction == 3:
+            PoisonCheck()
             if Speed > enemySpeed:
                 PoisonAttacking()
                 if battleStatus == "None":
@@ -115,6 +119,14 @@ def CheckDefeat():
     if Health <= 0:
         battleStatus = "Defeat"
         Defeat()
+
+#Check if the user actually has poison to do a poison attack
+
+def PoisonCheck():
+    global battleAction
+    if poisonOwned <= 0:
+        print "You don't have enough poison to do that!"
+        battleAction = 2
 
 #Poisonous version of Attack and vice versa 
 
@@ -466,6 +478,13 @@ while playAgain == 1:
                 Speed -= 5
             ShopMenu = 0
         if ShopMenu == 5:
+            poisonOwned += 1
+            Coins -= 10
+            if Coins < 0:
+                print "You don't have enough money!"
+                Coins += 10
+                poisonOwned -= 1
+        if ShopMenu == 6:
             Area = 0
             ShopMenu = 0
     while Area == 2:
@@ -496,5 +515,12 @@ while playAgain == 1:
             Bandit()
             battle = True
             Battle()
-    while Area == 2:
-        #Make this a flashback or arena or something
+    while Area == 3:
+        print "Welcome to the metagame!"
+        if firstTime == True:
+            print "Wait..."
+            print "...What?"
+            print "Here, you can enter an enemy's unique ID number to fight them again. Interesting, right?"
+            while enemyNumber == 0:
+                enemyNumber = int(raw_input("What would you like to fight today? Input the unique ID number here.  "))
+            while enemyNumber == 1:
