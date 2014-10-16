@@ -69,7 +69,7 @@ def Battle():
             PoisonCheck()
             battleAction = 0
         while battleAction == 3:
-            PoisonCheck()
+            PoisonOwnedCheck()
             if Speed > enemySpeed:
                 PoisonAttacking()
                 if battleStatus == "None":
@@ -532,7 +532,7 @@ while playAgain == 1:
                 Adventure += 1
                 Area = 0
             if battleStatus == "Defeat":
-                print "You flee from battle and return to town to rest up."
+                print "You flee from battle and return to town to recover."
                 ReturnStats()
                 battleStatus = "None"
                 Area = 0
@@ -559,6 +559,7 @@ while playAgain == 1:
             
         while enemyNumber == 565:
             print "So you wish to fight the Bandit? So be it!"
+            print "-------------------------------------"
             Bandit()
             battle = True
             Battle()
