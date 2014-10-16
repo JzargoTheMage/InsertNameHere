@@ -22,6 +22,7 @@ TempSpeed = 0
 playerType = 0
 battleStatus = "None"
 enemyName = "None"
+
 poison = False
 enemyPoison = False
 Coins = 15
@@ -122,7 +123,7 @@ def CheckDefeat():
 
 #Check if the user actually has poison to do a poison attack
 
-def PoisonCheck():
+def PoisonOwnedCheck():
     global battleAction
     if poisonOwned <= 0:
         print "You don't have enough poison to do that!"
@@ -136,6 +137,7 @@ def PoisonAttacking():
     global Attack
     global OriginalAttack
     global enemyPoison
+    PoisonOwnedCheck()
     TempAttack = Attack
     Attack /= 2
     damage = Attack - enemyDefense
@@ -170,12 +172,13 @@ def EnemyPoisonAttacking():
 
 def PoisonCheck():
     global Health
-    global enemyHealth
-    global poison
     if poison == True:
         Health = Health - 2
         print playerName, "is damaged by poison!"
         CheckDefeat()
+    
+def enemyPoisonCheck():
+    global enemyHealth
     if enemyPoison == True:
         enemyHealth = enemyHealth - 2
         print "The", enemyName, "is damaged by poison!"
@@ -406,6 +409,7 @@ def Defeat():
     enemyPoison = False
 
 #Beginning of main program here
+#Opening sequence
 
 while playAgain == 1:
     print "Welcome!"
@@ -438,13 +442,20 @@ while playAgain == 1:
             print "Cheater."
             OP()
             filler = 1
+            
+#This is the town center. It is essentially the hub.
+            
     while Area == 0:
         print "What would you like to do?"
         Area = int(raw_input("Type 1 to go shopping, or 2 to proceed on your journey.  ")
+        
+#This is the shop. You buy upgrades and poison here.
+        
     while Area == 1:
         while ShopMenu == 0:
-            print "Welcome to the shop! What would you like? Upgrades are 5 coins."
-            ShopMenu = int(raw_input("1 is Health, 2 is Attack, 3 is Defense, and 4 is Speed. Type 5 to return to town center.  ")
+            print "Welcome to the shop! What would you like? Upgrades are 5 coins, and poison is 10."
+            ShopMenu = int(raw_input("1 is Health, 2 is Attack, 3 is Defense, 4 is Speed, and 5 is poison. Enter 6 to return to town square.  "))
+            
         if ShopMenu == 1:
             Coins -= 5
             Health += 5
@@ -453,6 +464,7 @@ while playAgain == 1:
                 Coins += 5
                 Health -= 5
             ShopMenu = 0
+            
         if ShopMenu == 2:
             Attack += 5
             Coins -= 5
@@ -461,6 +473,7 @@ while playAgain == 1:
                 Coins += 5
                 Attack -= 5
             ShopMenu = 0
+            
         if ShopMenu == 3:
             Defense += 5
             Coins -= 5
@@ -469,6 +482,7 @@ while playAgain == 1:
                 Coins += 5
                 Defense -= 5
             ShopMenu = 0
+            
         if ShopMenu == 4:
             Speed += 5
             Coins -= 5
@@ -477,6 +491,7 @@ while playAgain == 1:
                 Coins += 5
                 Speed -= 5
             ShopMenu = 0
+            
         if ShopMenu == 5:
             poisonOwned += 1
             Coins -= 10
@@ -484,10 +499,15 @@ while playAgain == 1:
                 print "You don't have enough money!"
                 Coins += 10
                 poisonOwned -= 1
+                
         if ShopMenu == 6:
             Area = 0
             ShopMenu = 0
+            
+#This is the main body of the adventure. Yuss
+            
     while Area == 2:
+        
         while Adventure == 0:
             print "You hear a desparate call for help, almost drowned out by screams."
             print "Approaching the source of the noise, you find a ransacked caravan with one lone survivor."
@@ -495,12 +515,18 @@ while playAgain == 1:
             print "He is fading in and out of consciousness, muttering to himself.
             print "'Bandits... ambush... g-gem..... taken.....'"
             print "Suddenly, an arrow whizzes past your head, barely missing you."
+            print "-------------------------------------"
             Bandit()
             battle = True
             Battle()
             if battleStatus == "Victory":
                 print "After a thorough search of the bandit, you are unable to find the gem the dying man spoke of."
-                print "Disappointed, you return to town and rest up."
+                print "However, you do find the bandit clan's token. Feeling elated, you pocket the souvenir for later."
+                print "You may be finished for the day, but tomorrow you can track the bandits back to their hideout."
+                print "Excited, you return to town and rest up."
+                print "-------------------------------------"
+                print "You discovered the Bandit's ID number! Write it down somewhere.
+                print "Enemy ID: 565"
                 ReutrnStats()
                 battleStatus = "None"
                 Adventure += 1
@@ -510,17 +536,41 @@ while playAgain == 1:
                 ReturnStats()
                 battleStatus = "None"
                 Area = 0
+                
         while Adventure == 1:
             print ""
             Bandit()
             battle = True
             Battle()
+            #Unfinished battle above
+            
+#This is the metagame. Seriously. I'm going to call it that now.
+            
     while Area == 3:
         print "Welcome to the metagame!"
         if firstTime == True:
             print "Wait..."
             print "...What?"
             print "Here, you can enter an enemy's unique ID number to fight them again. Interesting, right?"
-            while enemyNumber == 0:
-                enemyNumber = int(raw_input("What would you like to fight today? Input the unique ID number here.  "))
-            while enemyNumber == 1:
+            firstTime = False
+            
+        while enemyNumber == 0:
+            enemyNumber = int(raw_input("What would you like to fight today? Input the unique ID number here.  "))
+            
+        while enemyNumber == 565:
+            print "So you wish to fight the Bandit? So be it!"
+            Bandit()
+            battle = True
+            Battle()
+            if battleStatus == "Victory":
+                print "After humiliating the", enemyName, " once again, you return to the town square."
+                ReturnStats()
+                battleStatus = "None"
+                Area = 0
+                enemyNumber = 0
+            if battleStatus == "Defeat":
+                print "You suck at life. Go away."
+                ReturnStats()
+                battleStatus = "None"
+                Area = 0
+                enemyNumber = 0
