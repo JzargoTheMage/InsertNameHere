@@ -558,9 +558,10 @@ while playAgain == 1:
             enemyNumber = int(raw_input("What would you like to fight today? Input the unique ID number here.  "))
             
         while enemyNumber == 565:
-            print "So you wish to fight the Bandit? So be it!"
-            print "-------------------------------------"
             Bandit()
+            #Make everything below calling the enemy type into a function
+            print "So you wish to fight the", enemyName, "? So be it!"
+            print "-------------------------------------"
             battle = True
             Battle()
             if battleStatus == "Victory":
