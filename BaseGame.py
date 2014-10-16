@@ -173,14 +173,14 @@ def EnemyPoisonAttacking():
 def PoisonCheck():
     global Health
     if poison == True:
-        Health = Health - 2
+        Health = Health - 5
         print playerName, "is damaged by poison!"
         CheckDefeat()
     
 def enemyPoisonCheck():
     global enemyHealth
     if enemyPoison == True:
-        enemyHealth = enemyHealth - 2
+        enemyHealth = enemyHealth - 5
         print "The", enemyName, "is damaged by poison!"
         CheckVictory()
 
