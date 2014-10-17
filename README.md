@@ -11,10 +11,4 @@ Only use or modify JamEngine with written permission.
 
 --------
 
-You are a wandering warrior in search of riches and glory. Nothing matters to you except getting what you want. Then one day you come upon a strange jewel with mystical powers, and everything is flipped on its head.
-
-You can't stop.
-
-You can't rest.
-
-And you can't escape the madness.
+You are a wandering warrior in search of riches and glory. Nothing matters to you except getting what you want, when you want it. Then one day you come upon a strange jewel with mystical powers, and everything is flipped on its head. Elemental beings of all varieties are hunting you down, trying to recover the strange gem, and you will never view riches the same way again.
