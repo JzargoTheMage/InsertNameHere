@@ -83,6 +83,30 @@ def Battle():
                 PoisonCheck()
                 battleAction = 0
 
+#Metagame battle function
+
+def Metagame():
+    global battleStatus
+    global Area
+    global enemyNumber
+    print "You wish to fight the", enemyName, "? So be it!"
+    print "-------------------------------------"
+    battle = True
+    Battle()
+    if battleStatus == "Victory":
+        print "After humiliating the", enemyName, " once again, you return to the town square."
+        ReturnStats()
+        battleStatus = "None"
+        Area = 0
+        enemyNumber = 0
+    if battleStatus == "Defeat":
+        print "You suck at life. Go away."
+        ReturnStats()
+        battleStatus = "None"
+        Area = 0
+        enemyNumber = 0
+
+
 #Save prebattle stats and restore them later.
 
 def SaveStats():
@@ -412,7 +436,14 @@ def Defeat():
 #Opening sequence
 
 while playAgain == 1:
-    print "Welcome!"
+    print "Nobility has its fair share of ups and downs."
+    print "You, however, only seem to experience the dead ends of life."
+    print "No inheritance, no land, not even a lakeside house to call your own."
+    print "You expected to receive your living from your adoptive parents, but in the end your brother pushed you out of their will."
+    print "Siblings suck."
+    print "Now you are forced to travel, fighting off the forces of nature by wit and strength alone."
+    print "Until now, that is..."
+    print "-------------------------------------"
     while playerName == "":
         playerName = raw_input("What is your name?  ")
     while filler == 0:
@@ -447,7 +478,7 @@ while playAgain == 1:
             
     while Area == 0:
         print "What would you like to do?"
-        Area = int(raw_input("Type 1 to go shopping, or 2 to proceed on your journey.  ")
+        Area = int(raw_input("Type 1 to go shopping, 2 to proceed on your journey, or 3 to enter the arena.  ")
         
 #This is the shop. You buy upgrades and poison here.
         
@@ -509,21 +540,24 @@ while playAgain == 1:
     while Area == 2:
         
         while Adventure == 0:
-            print "You hear a desparate call for help, almost drowned out by screams."
+            print "-------------------------------------"
+            print "You are wandering along the beachside near your old house, daydreaming of the good times."
+            print "Suddenly, you hear a desparate call for help, almost drowned out by the sound of the crashing waves."
             print "Approaching the source of the noise, you find a ransacked caravan with one lone survivor."
             print "The man is badly injured, with a massive gouge across his chest and an arrow stuck in his shoulder."
             print "He is fading in and out of consciousness, muttering to himself.
             print "'Bandits... ambush... g-gem..... taken.....'"
-            print "Suddenly, an arrow whizzes past your head, barely missing you."
+            print "Before you can bandage the man, an arrow whizzes past your head, barely missing you."
+            print "The man pleads you, 'Stop.. them.... for.. me......'"
+            print "And so you turn around, staring the assailant in the eye, the man's dying words your only motivation."
             print "-------------------------------------"
             Bandit()
             battle = True
             Battle()
             if battleStatus == "Victory":
-                print "After a thorough search of the bandit, you are unable to find the gem the dying man spoke of."
-                print "However, you do find the bandit clan's token. Feeling elated, you pocket the souvenir for later."
-                print "You may be finished for the day, but tomorrow you can track the bandits back to their hideout."
-                print "Excited, you return to town and rest up."
+                print "The bandit slumps to the ground, dead at your feet. You push him onto his back with your boot and proceed to check his body."
+                print "His pockets yield minimum gold, and there is no sign of the gem the dying man spoke of."
+                print "However, you do find the bandit clan's token. Curious, you pocket the souvenir for later."
                 print "-------------------------------------"
                 print "You discovered the Bandit's ID number! Write it down somewhere.
                 print "Enemy ID: 565"
@@ -538,10 +572,15 @@ while playAgain == 1:
                 Area = 0
                 
         while Adventure == 1:
-            print ""
+            print "You depart town in search of the bandit's hideout, only a vague sense of direction to guide you there."
+            print "
             Bandit()
             battle = True
             Battle()
+            if battleStatus == "Victory":
+                
+            if battleStatus == "Defeat":
+                
             #Unfinished battle above
             
 #This is the metagame. Seriously. I'm going to call it that now.
@@ -559,20 +598,10 @@ while playAgain == 1:
             
         while enemyNumber == 565:
             Bandit()
-            #Make everything below calling the enemy type into a function
-            print "So you wish to fight the", enemyName, "? So be it!"
-            print "-------------------------------------"
-            battle = True
-            Battle()
-            if battleStatus == "Victory":
-                print "After humiliating the", enemyName, " once again, you return to the town square."
-                ReturnStats()
-                battleStatus = "None"
-                Area = 0
-                enemyNumber = 0
-            if battleStatus == "Defeat":
-                print "You suck at life. Go away."
-                ReturnStats()
-                battleStatus = "None"
-                Area = 0
-                enemyNumber = 0
+            Metagame()
+            
+        while enemyNumber == 324:
+            BanditLeader()
+            Metagame()
+            
+        
