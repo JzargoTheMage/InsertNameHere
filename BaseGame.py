@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+
+#Character info variables
 filler = 0
 playerName = ""
 Area = 0
@@ -6,12 +8,17 @@ Health = 0
 Attack = 0
 Defense = 0
 Speed = 0
+Coins = 15
+poisonOwned = 0
+playerType = 0
+
+#Enemy info variables
 enemyHealth = 0
 enemyAttack = 0
 enemyDefense = 0
 enemySpeed = 0
-damage = 0
-battleAction = 0
+
+#Battle info storage variables
 OriginalHealth = 0
 OriginalAttack = 0
 OriginalDefense = 0
@@ -19,21 +26,24 @@ OriginalSpeed = 0
 TempAttack = 0
 TempDefense = 0
 TempSpeed = 0
-playerType = 0
+
+#Battle element variables
+battle = False
+damage = 0
+battleAction = 0
 battleStatus = "None"
 enemyName = "None"
-
 poison = False
 enemyPoison = False
-Coins = 15
 Treasure = 0
+
+#Hub variables
+playAgain = 1
 ShopMenu = 0
 Adventure = 0
-playAgain = 1
-battle = False
 firstTime = True
 enemyNumber = 0
-poisonOwned = 0
+search = 0
 
 #Defined actions are below
 
@@ -442,7 +452,6 @@ while playAgain == 1:
     print "You expected to receive your living from your adoptive parents, but in the end your brother pushed you out of their will."
     print "Siblings suck."
     print "Now you are forced to travel, fighting off the forces of nature by wit and strength alone."
-    print "Until now, that is..."
     print "-------------------------------------"
     while playerName == "":
         playerName = raw_input("What is your name?  ")
@@ -548,8 +557,8 @@ while playAgain == 1:
             print "He is fading in and out of consciousness, muttering to himself.
             print "'Bandits... ambush... g-gem..... taken.....'"
             print "Before you can bandage the man, an arrow whizzes past your head, barely missing you."
-            print "The man pleads you, 'Stop.. them.... for.. me......'"
-            print "And so you turn around, staring the assailant in the eye, the man's dying words your only motivation."
+            print "The man pleads you, 'Stop.. them... Save......!'"
+            print "And so he dies in your arms, his final words lost to the afterlife."
             print "-------------------------------------"
             Bandit()
             battle = True
@@ -573,7 +582,15 @@ while playAgain == 1:
                 
         while Adventure == 1:
             print "You depart town in search of the bandit's hideout, only a vague sense of direction to guide you there."
-            print "
+            print "As you are leaving, you see that the caravin is still in pieces, and the bodies are yet to be cleaned up."
+            print "Search the remains of the caravan?"
+            search = int(raw_input("Type 1 for yes or 0 for no."))
+            if search == 1:
+                print "It appears that the bandits have already gotten everything of value here."
+                print "However, you do come across a lone coin purse containing a meager 15 gold."
+                Coins += 15
+                search = 0
+            #Story here
             Bandit()
             battle = True
             Battle()
@@ -591,7 +608,6 @@ while playAgain == 1:
             print "Wait..."
             print "...What?"
             print "Here, you can enter an enemy's unique ID number to fight them again. Interesting, right?"
-            firstTime = False
             
         while enemyNumber == 0:
             enemyNumber = int(raw_input("What would you like to fight today? Input the unique ID number here.  "))
