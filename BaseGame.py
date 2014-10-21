@@ -620,4 +620,6 @@ while playAgain == 1:
             BanditLeader()
             Metagame()
             
+        while enemyNumber == :
+            #Insert other enemies here
         
