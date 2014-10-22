@@ -11,6 +11,7 @@ Speed = 0
 Coins = 15
 poisonOwned = 0
 playerType = 0
+karma = 0
 
 #Enemy info variables
 enemyHealth = 0
@@ -581,6 +582,7 @@ while playAgain == 1:
                 Area = 0
                 
         while Adventure == 1:
+            print "-------------------------------------"
             print "You depart town in search of the bandit's hideout, only a vague sense of direction to guide you there."
             print "As you are leaving, you see that the caravin is still in pieces, and the bodies are yet to be cleaned up."
             print "Search the remains of the caravan?"
@@ -589,15 +591,30 @@ while playAgain == 1:
                 print "It appears that the bandits have already gotten everything of value here."
                 print "However, you do come across a lone coin purse containing a meager 15 gold."
                 Coins += 15
+                karma -= 1
                 search = 0
-            #Story here
+            print "Now past the wreckage, you are determined to uncover the bandits' whereabouts."
+            print "You begin to scour the countryside, noting any unused trails, broken branches, even suspicious rocks."
+            print "Suddenly, you hear a rustling in the brush behind you."
+            print "Turning around, you find another member of the bandit clan."
+            print "'Dammit,' he curses under his breath."
+            print "-------------------------------------"
             Bandit()
             battle = True
             Battle()
             if battleStatus == "Victory":
-                
+                print "Pinning the bandit under your boot, you ask, 'Where is your leader?'"
+                print "'I'll never tell you! NEVER!' he responds."
+                #Finish story for this quest
+                ReutrnStats()
+                battleStatus = "None"
+                Adventure += 1
+                Area = 0
             if battleStatus == "Defeat":
-                
+                print "You flee from battle and return to town to recover."
+                ReturnStats()
+                battleStatus = "None"
+                Area = 0
             #Unfinished battle above
             
 #This is the metagame. Seriously. I'm going to call it that now.
