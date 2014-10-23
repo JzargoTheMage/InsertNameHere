@@ -565,6 +565,7 @@ while playAgain == 1:
             battle = True
             Battle()
             if battleStatus == "Victory":
+                print "-------------------------------------"
                 print "The bandit slumps to the ground, dead at your feet. You push him onto his back with your boot and proceed to check his body."
                 print "His pockets yield minimum gold, and there is no sign of the gem the dying man spoke of."
                 print "However, you do find the bandit clan's token. Curious, you pocket the souvenir for later."
@@ -605,17 +606,50 @@ while playAgain == 1:
             if battleStatus == "Victory":
                 print "Pinning the bandit under your boot, you ask, 'Where is your leader?'"
                 print "'I'll never tell you! NEVER!' he responds."
-                #Finish story for this quest
-                ReutrnStats()
-                battleStatus = "None"
-                Adventure += 1
-                Area = 0
+                print "-------------------------------------"
+                print "Enter 1 to be nice."
+                print "Enter 2 to threaten."
+                print "Enter 3 to leave him be."
+                search = int(raw_input("What will you do?  "))
+                print "-------------------------------------"
+                if search == 1:
+                    print "'I'll buy you a new sword if you tell me,' you say."
+                    print "'Really? Alright! I'll show you the way,' he replies."
+                    print "-------------------------------------"
+                    ReutrnStats()
+                    battleStatus = "None"
+                    Adventure += 1
+                    Area = 0
+                    search = 0
+                if search == 2:
+                    print "'Would you rather I slit your throat?' you ask."
+                    print "'Nononononono please anything but that!' he screams."
+                    print "'So you would prefer I hang you?'"
+                    print "'You know what I mean! Fine, I'll show you the way!"
+                    print "-------------------------------------"
+                    ReutrnStats()
+                    battleStatus = "None"
+                    Adventure += 1
+                    karma -= 1
+                    Area = 0
+                    search = 0
+                if search == 3:
+                    print "'Fine then, be that way,' you respond."
+                    print "'Wait, really? You're just going to leave me after all of that?' the thief complains."
+                    print "'Yes, if you're going to be this useless.'"
+                    print "'You think I'm useless?! I'll show you!' he exclaims, wildly stomping off down the path."
+                    print "-------------------------------------"
+                    ReutrnStats()
+                    battleStatus = "None"
+                    Adventure += 1
+                    Area = 0
+                    search = 0
             if battleStatus == "Defeat":
                 print "You flee from battle and return to town to recover."
+                print "-------------------------------------"
                 ReturnStats()
                 battleStatus = "None"
                 Area = 0
-            #Unfinished battle above
             
 #This is the metagame. Seriously. I'm going to call it that now.
             
