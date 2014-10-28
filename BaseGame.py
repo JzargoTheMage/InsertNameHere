@@ -406,20 +406,16 @@ def MagmaWolf():
     
 def Victory():
     global battle
-    global playerType
     global enemyType
     global poison
     global enemyPoison
-    global Area
     global Coins
     global Treasure
     print playerName, "was victorious against", enemyName, "!"
     print playername, "was awarded", Treasure, "coins!"
     Coins += Treasure
     Treasure = 0
-    Area = 0
     battle = False
-    playerType = 0
     enemyType = 0
     poison = False
     enemyPoison = False
@@ -428,17 +424,13 @@ def Victory():
 
 def Defeat():
     global battle
-    global playerType
     global enemyType
     global poison
     global enemyPoison
     global Treasure
-    global Area
     print playername, "was defeated by", enemyName, "!"
-    Area = 0
     Treasure = 0
     battle = False
-    playerType = 0
     enemyType = 0
     poison = False
     enemyPoison = False
@@ -488,7 +480,7 @@ while playAgain == 1:
             
     while Area == 0:
         print "What would you like to do?"
-        Area = int(raw_input("Type 1 to go shopping, 2 to proceed on your journey, or 3 to enter the arena.  ")
+        Area = int(raw_input("Type 1 to go shopping, 2 to proceed on your journey, or 3 to enter the arena.  "))
         
 #This is the shop. You buy upgrades and poison here.
         
