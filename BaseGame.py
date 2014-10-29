@@ -455,27 +455,29 @@ while playAgain == 1:
         print "Type 3 for Thief."
         print "Type 4 for Berserker."
         playerType = int(raw_input("Well? What are you?  "))
-        while playerType == 1:
+        if playerType == 1:
             print "You chose the Knight class!"
             Knight()
             filler = 1
-        while playerType == 2:
+        elif playerType == 2:
             print "You chose the Warrior class!"
             Warrior()
             filler = 1
-        while playerType == 3:
+        elif playerType == 3:
             print "You chose the Thief class!"
             Thief()
             filler = 1
-        while playerType == 4:
+        elif playerType == 4:
             print "You chose the Berserker class!"
             Berserker()
             filler = 1
-        while playerType == 42:
+        elif playerType == 42:
             print "Cheater."
             OP()
             filler = 1
-            
+        else:
+            print "What are you trying to do? Pick a legitimate option!"
+
 #This is the town center. It is essentially the hub.
             
     while Area == 0:
@@ -497,8 +499,7 @@ while playAgain == 1:
                 Coins += 5
                 Health -= 5
             ShopMenu = 0
-            
-        if ShopMenu == 2:
+        elif ShopMenu == 2:
             Attack += 5
             Coins -= 5
             if Coins < 0:
@@ -506,8 +507,7 @@ while playAgain == 1:
                 Coins += 5
                 Attack -= 5
             ShopMenu = 0
-            
-        if ShopMenu == 3:
+        elif ShopMenu == 3:
             Defense += 5
             Coins -= 5
             if Coins < 0:
@@ -515,8 +515,7 @@ while playAgain == 1:
                 Coins += 5
                 Defense -= 5
             ShopMenu = 0
-            
-        if ShopMenu == 4:
+        elif ShopMenu == 4:
             Speed += 5
             Coins -= 5
             if Coins < 0:
@@ -524,19 +523,21 @@ while playAgain == 1:
                 Coins += 5
                 Speed -= 5
             ShopMenu = 0
-            
-        if ShopMenu == 5:
+        elif ShopMenu == 5:
             poisonOwned += 1
             Coins -= 10
             if Coins < 0:
                 print "You don't have enough money!"
                 Coins += 10
                 poisonOwned -= 1
-                
-        if ShopMenu == 6:
+        elif ShopMenu == 6:
+            print "Come again!"
             Area = 0
             ShopMenu = 0
-            
+        else:
+            print "I'm sorry, I didn't catch that. Come again?"
+            ShopMenu = 0:
+
 #This is the main body of the adventure. Yuss
             
     while Area == 2:
@@ -642,6 +643,14 @@ while playAgain == 1:
                 ReturnStats()
                 battleStatus = "None"
                 Area = 0
+                
+        while Adventure > 1:
+            print "You encounter a strange old man."
+            print "'Hello...?' you say."
+            print "'TIME WARP!' he responds, and a magical vortex appears beneath you."
+            print "'DAFUQ DUDE!' you scream as you fall into the abyss."
+            Area = 0
+            Adventure = 0
             
 #This is the metagame. Seriously. I'm going to call it that now.
             
@@ -651,18 +660,26 @@ while playAgain == 1:
             print "Wait..."
             print "...What?"
             print "Here, you can enter an enemy's unique ID number to fight them again. Interesting, right?"
+            print "You even get to keep the money!"
+            firstTime = False
             
         while enemyNumber == 0:
-            enemyNumber = int(raw_input("What would you like to fight today? Input the unique ID number here.  "))
+            enemyNumber = int(raw_input("What would you like to fight today? Input the unique ID number here, or 1 to return to town.  "))
             
-        while enemyNumber == 565:
+        if enemyNumber == 1:
+            print "Come again!"
+            enemyNumber = 0
+            Area = 0
+        elif enemyNumber == 565:
             Bandit()
             Metagame()
-            
-        while enemyNumber == 324:
+        elif enemyNumber == 324:
             BanditLeader()
             Metagame()
+        else:
+            print "I'm sorry, I didn't catch that. Come again?"
+            enemyNumber = 0
             
-        while enemyNumber == :
-            #Insert other enemies here
-        
+    if Area > 3 or Area < 0:
+        print "Where the heck are you pointing? Let's try this again."
+        Area = 0
