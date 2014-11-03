@@ -60,13 +60,13 @@ def Battle():
         if battleAction == 0:
             battleAction = int(raw_input("Enter 1 to attack, 2 to defend, or 3 to attack with poison.  "))
         elif battleAction == 1:
-            if Speed > enemySpeed:
+            if Speed >= enemySpeed:
                 Attacking()
                 if battleStatus == "None":
                     EnemyAttacking()
                 PoisonCheck()
                 battleAction = 0
-            if enemySpeed > Speed:
+            elif enemySpeed > Speed:
                 if battleStatus == "None":
                     EnemyAttacking()
                 Attacking()
@@ -81,13 +81,13 @@ def Battle():
             battleAction = 0
         elif battleAction == 3:
             PoisonOwnedCheck()
-            if Speed > enemySpeed:
+            if Speed >= enemySpeed:
                 PoisonAttacking()
                 if battleStatus == "None":
                     EnemyAttacking()
                 PoisonCheck()
                 battleAction = 0
-            if enemySpeed > Speed:
+            elif enemySpeed > Speed:
                 if battleStatus == "None":
                     EnemyAttacking()
                 PoisonAttacking()
@@ -475,6 +475,7 @@ while playAgain == 1:
             OP()
         else:
             print "What are you trying to do? Pick a legitimate option!"
+            playerType = 0
 
 #This is the town center. It is essentially the hub.
             
@@ -537,6 +538,7 @@ while playAgain == 1:
                     print "You don't have enough money!"
                     Coins += 10
                     poisonOwned -= 1
+                ShopMenu = 0
                 
             elif ShopMenu == 6:
                 print "Come again!"
@@ -684,7 +686,7 @@ while playAgain == 1:
         if enemyNumber == 0:
             enemyNumber = int(raw_input("What would you like to fight today? Input the unique ID number here, or 1 to return to town.  "))
             
-        elif enemyNumber == 1:
+        if enemyNumber == 1:
             print "Come again!"
             enemyNumber = 0
             Area = 0
