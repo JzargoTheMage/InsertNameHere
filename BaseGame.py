@@ -24,6 +24,7 @@ OriginalHealth = 0
 OriginalAttack = 0
 OriginalDefense = 0
 OriginalSpeed = 0
+TempHealth = 0
 TempAttack = 0
 TempDefense = 0
 TempSpeed = 0
@@ -246,19 +247,27 @@ def EnemyAttacking():
     CheckDefeat()
     damage = 0
 
-#Defending doubles Defense in exchange for the user's attack that turn (temp.)
+#Defending doubles Defense in exchange for the user's attack that turn (temp.) as well as heals small damage
 
 def Defending():
     global Defense
-    global Health
     global damage
+    global TempDefense
     TempDefense = Defense
     Defense = Defense * 2
+    TempHealth = Health * 1.15
     print playerName, "is guarding!"
 
 def ReturnDefense():
+    global Health
+    global TempHealth
+    global Defense
+    global TempHealth
     Defense = TempDefense
     TempDefense = 0
+    print playername, "regained ", TempHealth - Health, "points of health!"
+    Health = TempHealth
+    TempHealth = 0
 
 #This ensures that the user does not gain Health from being attacked
     
