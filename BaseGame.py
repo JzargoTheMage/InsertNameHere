@@ -182,7 +182,7 @@ def PoisonAttacking():
     global enemyHealth
     global damage
     global Attack
-    global OriginalAttack
+    global TempAttack
     global enemyPoison
     PoisonOwnedCheck()
     TempAttack = Attack
@@ -201,7 +201,7 @@ def EnemyPoisonAttacking():
     global Health
     global damage
     global enemyAttack
-    global OriginalAttack
+    global TempAttack
     global poison
     TempAttack = enemyAttack
     enemyAttack /= 2
@@ -273,7 +273,7 @@ def ReturnDefense():
     global TempDefense
     Defense = TempDefense
     TempDefense = 0
-    print playerName, "regained ", TempHealth - Health, "points of health!"
+    print playerName, "regained", TempHealth - Health, "points of health!"
     Health = TempHealth
     TempHealth = 0
 
@@ -301,8 +301,8 @@ def Knight():
     global Attack
     global Defense
     global Speed
-    Health = 10
-    Attack = 10
+    Health = 15
+    Attack = 5
     Defense = 15
     Speed = 5
     
@@ -321,9 +321,9 @@ def Berserker():
     global Attack
     global Defense
     global Speed
-    Health = 15
+    Health = 5
     Attack = 15
-    Defense = 5
+    Defense = 15
     Speed = 5
 
 def OP():
@@ -620,7 +620,9 @@ while playAgain == 1:
                     Area = 0
                     filler = False
                 if battleStatus == "Defeat":
+                    print "-------------------------------------"
                     print "You flee from battle and return to town to recover."
+                    print "-------------------------------------"
                     ReturnStats()
                     battleStatus = "None"
                     Area = 0
