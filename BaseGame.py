@@ -350,7 +350,7 @@ def Bandit():
     enemyAttack = 5
     enemyDefense = 5
     enemySpeed = 5
-    Treasure = 15
+    Treasure = 5
 
 def BanditLeader():
     global enemyName
